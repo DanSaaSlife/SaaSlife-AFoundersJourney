@@ -8,21 +8,54 @@
 </head>
 <body>
     <div class="container">
-        <h1>SaaSlife: A Founder's Journey</h1>
-        <div id="game">
-            <div id="status">
-                <p>Round: <span id="round-number">1</span></p>
-                <p>Current Player: <span id="current-player">1</span></p>
-                <p>MRR: <span id="mrr">100</span></p>
-                <p>Users: <span id="users">100</span></p>
-                <p>ARR: <span id="arr">100</span></p>
-                <p>Churn Rate: <span id="churn-rate">5%</span></p>
+        <div class="game-board">
+            <div id="game">
+                <h1>SaaSlife: A Founder's Journey</h1>
+
+                <div id="player-setup">
+                    <h2>Enter Company Names</h2>
+                    <form id="company-names-form">
+                        <input type="text" id="company1" placeholder="Company 1 Name" required>
+                        <input type="text" id="company2" placeholder="Company 2 Name" required>
+                        <!-- Add more input fields as needed for more players -->
+                        <button type="submit">Start Game</button>
+                    </form>
+                </div>
+
+                <div id="status" style="display: none;">
+                    <p>Round: <span id="round-number">1</span></p>
+                    <p>Current Player: <span id="current-player"></span></p>
+                    <p>MRR: $<span id="mrr">1000</span></p>
+                    <p>Users: <span id="users">100</span></p>
+                    <p>ARR: $<span id="arr">1000</span></p>
+                    <p>Churn Rate: <span id="churn-rate">5%</span></p>
+                </div>
+
+                <div id="card-area" style="display: none;">
+                    <button id="draw-card">Draw Card</button>
+                    <div id="card-display"></div>
+                </div>
+
+                <button id="end-turn" style="display: none;">End Turn</button>
             </div>
-            <div id="card-area">
-                <button id="draw-card">Draw Card</button>
-                <div id="card-display"></div>
+
+            <div id="rules">
+                <h2>Game Rules</h2>
+                <p><strong>Objective:</strong> Achieve the highest financial growth metrics.</p>
+                <p><strong>Number of Players:</strong> 2-6 players</p>
+                <p><strong>Setup:</strong></p>
+                <ul>
+                    <li>Each player starts with $1000 in MRR and ARR, 100 users, and 5% churn rate.</li>
+                    <li>Players will take turns drawing and playing cards to increase their metrics.</li>
+                </ul>
+                <p><strong>Card Types:</strong></p>
+                <ul>
+                    <li><strong>Metric Cards:</strong> Increase MRR, users, or ARR.</li>
+                    <li><strong>Decision Cards:</strong> Make strategic decisions to grow your company.</li>
+                    <li><strong>Event Cards:</strong> Respond to positive or negative events affecting your company.</li>
+                </ul>
+                <p><strong>Winning:</strong> The player with the highest combined financial metrics at the end of the game wins.</p>
             </div>
-            <button id="end-turn">End Turn</button>
         </div>
     </div>
     <script src="script.js"></script>
