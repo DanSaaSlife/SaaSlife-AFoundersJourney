@@ -83,3 +83,9 @@ button:hover {
 #card-display {
     margin-top: 20px;
 }
+
+#end-message h2 {
+    color: green;
+    font-size: 24px;
+    margin-top: 20px;
+}
