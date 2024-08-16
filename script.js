@@ -50,13 +50,11 @@ function drawCard() {
     const cardTypes = ['metric', 'decision', 'event'];
     const randomType = cardTypes[Math.floor(Math.random() * cardTypes.length)];
     const card = cards[randomType][Math.floor(Math.random() * cards[randomType].length)];
-    
-    document.getElementById('card-display').innerHTML = `<p>${card.name}</p>`;
-    resolveCard(card);
-}
 
-function resolveCard(card) {
+    document.getElementById('card-display').textContent = `Card Drawn: ${card.name}`;
+    
     const player = players[currentPlayerIndex];
+
     if (card.effect.mrr) player.mrr += player.mrr * card.effect.mrr;
     if (card.effect.users) player.users += card.effect.users;
     if (card.effect.arr) player.arr += player.arr * card.effect.arr;
@@ -74,11 +72,41 @@ function updateStatus() {
     document.getElementById('churn-rate').textContent = player.churn + '%';
 }
 
+function endTurn() {
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+
+    if (currentPlayerIndex === 0) {
+        round++;
+        document.getElementById('round-number').textContent = round;
+        
+        if (round > 10) {
+            endGame();
+            return;
+        }
+    }
+
+    updateStatus();
+}
+
+function endGame() {
+    document.getElementById('card-area').style.display = 'none';
+    document.getElementById('end-turn').style.display = 'none';
+    document.getElementById('status').style.display = 'none';
+    
+    let highestArr = 0;
+    let winner = '';
+
+    players.forEach(player => {
+        if (player.arr > highestArr) {
+            highestArr = player.arr;
+            winner = player.name;
+        }
+    });
+
+    document.getElementById('winner-message').textContent = `Congratulations, ${winner}! You have the highest ARR of $${highestArr.toFixed(2)} and have won the game!`;
+    document.getElementById('end-message').style.display = 'block';
+}
+
 document.getElementById('company-names-form').addEventListener('submit', setupPlayers);
 document.getElementById('draw-card').addEventListener('click', drawCard);
-document.getElementById('end-turn').addEventListener('click', () => {
-    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-    if (currentPlayerIndex === 0) round++;
-    document.getElementById('round-number').textContent = round;
-    updateStatus();
-});
+document.getElementById('end-turn').addEventListener('click', endTurn);
