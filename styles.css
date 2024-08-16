@@ -82,10 +82,33 @@ button:hover {
 
 #card-display {
     margin-top: 20px;
+    font-weight: bold;
+}
+
+#card-details {
+    margin-top: 10px;
+    font-style: italic;
 }
 
 #end-message h2 {
     color: green;
     font-size: 24px;
     margin-top: 20px;
+}
+
+#final-results {
+    margin-top: 20px;
+}
+
+#restart-game {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#restart-game:hover {
+    background-color: #0056b3;
 }
